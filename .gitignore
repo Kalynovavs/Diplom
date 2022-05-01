@@ -36,6 +36,7 @@ out/
 *.zip
 *.tar.gz
 *.rar
+gate-simulator/node_modules
 
 ### Exclusions ###
 !gradle/wrapper/gradle-wrapper.jar
