@@ -5,7 +5,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
-import ru.netology.dto.StartingPage;
+import ru.netology.page.StartingPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -63,9 +63,6 @@ public class PaymentCardTest {
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
         buyWithCard.emptyFields();
-        buyWithCard.waitErrorMessageAboutWrongFormat();
-        buyWithCard.waitErrorMessageAboutWrongFormat();
-        buyWithCard.waitErrorMessageAboutWrongFormat();
         buyWithCard.waitErrorMessageBecauseOfEmptyField();
         buyWithCard.waitErrorMessageAboutWrongFormat();
     }

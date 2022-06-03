@@ -1,4 +1,4 @@
-package ru.netology.dto;
+package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.page.PagePayment;
