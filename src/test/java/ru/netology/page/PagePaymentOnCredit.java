@@ -20,8 +20,8 @@ public class PagePaymentOnCredit {
     private SelenideElement cardholderField = $$(".input").find(Condition.exactText("Владелец")).$(".input__control");
     private SelenideElement cardValidationCodeField = $("[placeholder= '999']");
     private SelenideElement continueButton = $(byText("Продолжить"));
-    private SelenideElement successMessage = $(withText("Операция одобрена Банком"));
-    private SelenideElement errorMessage = $(withText("Банк отказал в проведении операции"));
+    private SelenideElement successMessage = $(".notification_status_ok");
+    private SelenideElement errorMessage = $(".notification_status_error");
     private SelenideElement errorMessageAboutWrongFormat = $(byText("Неверный формат"));
     private SelenideElement errorMessageAboutWrongDateOfExpiry = $(byText("Неверно указан срок действия карты"));
     private SelenideElement errorMessageWithDateOfExpiry = $(byText("Истёк срок действия карты"));
@@ -31,48 +31,18 @@ public class PagePaymentOnCredit {
         header.shouldBe(Condition.visible);
     }
 
-    public void withCardNumber(String number) {
+    public void fillTheForm(
+            String number,
+            String monthNumber,
+            String yearNumber,
+            String nameOfCardholder,
+            String cvc
+    ) {
         cardNumberField.setValue(number);
-        monthField.setValue(DataHelper.generateDate(1,"MM"));
-        yearField.setValue(DataHelper.generateDate(1,"YY"));
-        cardholderField.setValue(DataHelper.getFullUsersName());
-        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
-        continueButton.click();
-    }
-
-    public void withMonth(String monthNumber) {
-        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
-        monthField.setValue(DataHelper.generateDate(1,"MM"));
-        yearField.setValue(DataHelper.generateDate(1,"YY"));
-        cardholderField.setValue(DataHelper.getFullUsersName());
-        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
-        continueButton.click();
-    }
-
-    public void withYear(String yearNumber) {
-        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
-        monthField.setValue(DataHelper.generateDate(1,"MM"));
-        yearField.setValue(DataHelper.generateDate(1,"YY"));
-        cardholderField.setValue(DataHelper.getFullUsersName());
-        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
-        continueButton.click();
-    }
-
-    public void withCardholder(String nameOfCardholder) {
-        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
-       monthField.setValue(DataHelper.generateDate(1,"MM"));
-        yearField.setValue(DataHelper.generateDate(1,"YY"));
-        cardholderField.setValue(nameOfCardholder);
-        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
-        continueButton.click();
-    }
-
-    public void withCardValidationCode(String cvc) {
-        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
-        monthField.setValue(DataHelper.generateDate(1,"MM"));
-        yearField.setValue(DataHelper.generateDate(1,"YY"));
-        cardholderField.setValue(DataHelper.getFullUsersName());
-        cardValidationCodeField.setValue(cvc);
+        monthField.setValue(monthNumber); //DataHelper.generateDate(1,"MM")
+        yearField.setValue(yearNumber); //DataHelper.generateDate(1,"YY")
+        cardholderField.setValue(nameOfCardholder); //DataHelper.getFullUsersName()
+        cardValidationCodeField.setValue(cvc); //String.valueOf(DataHelper.getCVCNumber())
         continueButton.click();
     }
 
