@@ -2,6 +2,8 @@ package ru.netology.data;
 
 import com.github.javafaker.Faker;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataHelper {
@@ -12,6 +14,10 @@ public class DataHelper {
         String[] monthNumbers = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
         int itemIndex = (int) (Math.random() * monthNumbers.length);
         return monthNumbers[itemIndex];
+    }
+
+    public static String generateDate(int months, String formatPattern) {
+        return LocalDate.now().plusMonths(months).format(DateTimeFormatter.ofPattern(formatPattern));
     }
 
     public static String generateYearNumber() {

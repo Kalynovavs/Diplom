@@ -35,9 +35,6 @@ public class SQLHelper {
         String dbUrl = System.getProperty("database.url");
         String dbUser = System.getProperty("database.name");
         String dbPassword = System.getProperty("database.password");
-        System.out.println(dbUrl);
-        System.out.println(dbUser);
-        System.out.println(dbPassword);
 
         var getInfo = "SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
         var runner = new QueryRunner();
@@ -55,13 +52,9 @@ public class SQLHelper {
     }
 
     public static void shouldDeleteAfterPayment() {
-
         String dbUrl = System.getProperty("database.url");
         String dbUser = System.getProperty("database.name");
         String dbPassword = System.getProperty("database.password");
-        System.out.println(System.getProperty("datasource.url"));
-        System.out.println(dbUser);
-        System.out.println(dbPassword);
 
         var clearPayment = "DELETE FROM payment_entity";
         var clearPaymentWithCredit = "DELETE FROM credit_request_entity";

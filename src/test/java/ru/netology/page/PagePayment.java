@@ -13,12 +13,12 @@ import static com.codeborne.selenide.Selenide.$$;
 
 
 public class PagePayment {
-    private SelenideElement heading = $(byText("Оплата по карте"));
-    private SelenideElement cardNumber = $("[placeholder= '0000 0000 0000 0000']");
-    private SelenideElement month = $("[placeholder= '08']");
-    private SelenideElement year = $("[placeholder= '22']");
-    private SelenideElement cardholder =$$(".input").find(Condition.exactText("Владелец")).$(".input__control");
-    private SelenideElement cardValidationCode = $("[placeholder= '999']");
+    private SelenideElement header = $(byText("Оплата по карте"));
+    private SelenideElement cardNumberField = $("[placeholder= '0000 0000 0000 0000']");
+    private SelenideElement monthField= $("[placeholder= '08']");
+    private SelenideElement yearField = $("[placeholder= '22']");
+    private SelenideElement cardholderField =$$(".input").find(Condition.exactText("Владелец")).$(".input__control");
+    private SelenideElement cardValidationCodeField = $("[placeholder= '999']");
     private SelenideElement continueButton = $(byText("Продолжить"));
     private SelenideElement successMessage = $(withText("Операция одобрена Банком"));
     private SelenideElement errorMessage = $(withText("Банк отказал в проведении операции"));
@@ -28,51 +28,51 @@ public class PagePayment {
     private SelenideElement errorMessageBecauseOfEmptyField = $(byText("Поле обязательно для заполнения"));
 
     public PagePayment() {
-        heading.shouldBe(Condition.visible);
+        header.shouldBe(Condition.visible);
     }
 
     public void withCardNumber(String number) {
-        cardNumber.setValue(number);
-        month.setValue(DataHelper.generateMonthNumber());
-        year.setValue(DataHelper.generateYearNumber());
-        cardholder.setValue(DataHelper.getFullUsersName());
-        cardValidationCode.setValue(String.valueOf(DataHelper.getCVCNumber()));
+        cardNumberField.setValue(number);
+        monthField.setValue(DataHelper.generateDate(1,"MM"));
+        yearField.setValue(DataHelper.generateDate(1,"YY"));
+        cardholderField.setValue(DataHelper.getFullUsersName());
+        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
         continueButton.click();
     }
 
     public void withMonth(String monthNumber) {
-        cardNumber.setValue(DataHelper.getApprovedCardNumber());
-        month.setValue(monthNumber);
-        year.setValue(DataHelper.generateYearNumber());
-        cardholder.setValue(DataHelper.getFullUsersName());
-        cardValidationCode.setValue(String.valueOf(DataHelper.getCVCNumber()));
+        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
+        monthField.setValue(monthNumber);
+        yearField.setValue(DataHelper.generateDate(1,"YY"));
+        cardholderField.setValue(DataHelper.getFullUsersName());
+        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
         continueButton.click();
     }
 
     public void withYear(String yearNumber) {
-        cardNumber.setValue(DataHelper.getApprovedCardNumber());
-        month.setValue(DataHelper.generateMonthNumber());
-        year.setValue(yearNumber);
-        cardholder.setValue(DataHelper.getFullUsersName());
-        cardValidationCode.setValue(String.valueOf(DataHelper.getCVCNumber()));
+        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
+        monthField.setValue(DataHelper.generateMonthNumber());
+        yearField.setValue(yearNumber);
+        cardholderField.setValue(DataHelper.getFullUsersName());
+        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
         continueButton.click();
     }
 
     public void withCardholder(String nameOfCardholder) {
-        cardNumber.setValue(DataHelper.getApprovedCardNumber());
-        month.setValue(DataHelper.generateMonthNumber());
-        year.setValue(DataHelper.generateYearNumber());
-        cardholder.setValue(nameOfCardholder);
-        cardValidationCode.setValue(String.valueOf(DataHelper.getCVCNumber()));
+        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
+        monthField.setValue(DataHelper.generateMonthNumber());
+        yearField.setValue(DataHelper.generateYearNumber());
+        cardholderField.setValue(nameOfCardholder);
+        cardValidationCodeField.setValue(String.valueOf(DataHelper.getCVCNumber()));
         continueButton.click();
     }
 
     public void withCardValidationCode(String cvc) {
-        cardNumber.setValue(DataHelper.getApprovedCardNumber());
-        month.setValue(DataHelper.generateMonthNumber());
-        year.setValue(DataHelper.generateYearNumber());
-        cardholder.setValue(DataHelper.getFullUsersName());
-        cardValidationCode.setValue(cvc);
+        cardNumberField.setValue(DataHelper.getApprovedCardNumber());
+        monthField.setValue(DataHelper.generateMonthNumber());
+        yearField.setValue(DataHelper.generateYearNumber());
+        cardholderField.setValue(DataHelper.getFullUsersName());
+        cardValidationCodeField.setValue(cvc);
         continueButton.click();
     }
 

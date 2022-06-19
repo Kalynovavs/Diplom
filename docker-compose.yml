@@ -19,6 +19,5 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
   node-app:
     build: gate-simulator
-    image: node-app:1.0
     ports:
       - '9999:9999'
