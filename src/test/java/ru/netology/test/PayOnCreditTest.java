@@ -39,7 +39,7 @@ public class PayOnCreditTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc = DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var number = DataHelper.getApprovedCardNumber();
@@ -55,7 +55,7 @@ public class PayOnCreditTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var number = DataHelper.getDeclinedCardNumber();
@@ -84,7 +84,7 @@ public class PayOnCreditTest {
         String nameOfCardholder = DataHelper.getFullUsersName();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var cvc = "1";
+        var cvc = DataHelper.getCVCNumber(1);
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -98,7 +98,7 @@ public class PayOnCreditTest {
         String nameOfCardholder = DataHelper.getFullUsersName();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var cvc = "12";
+        var cvc = DataHelper.getCVCNumber(2);
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -109,12 +109,12 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var nameOfCardHolder = DataHelper.getOnlyUsersLastName();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardHolder, cvc );
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+        buyWithCreditPage.waitSuccessMessage();
     }
 
     @Test
@@ -123,12 +123,12 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var nameOfCardHolder = DataHelper.getOnlyUsersFirstName();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardHolder, cvc );
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+        buyWithCreditPage.waitSuccessMessage();
     }
 
     @Test
@@ -137,10 +137,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var yearNumber = "20";
+        var yearNumber = DataHelper.generateDate(-20,"YY");
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageWithDateOfExpiry();
     }
@@ -151,10 +151,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var yearNumber = "99";
+        var yearNumber = DataHelper.generateDate(20000,"YY");;
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongDateOfExpiry();
     }
@@ -165,10 +165,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var yearNumber = "2";
+        var yearNumber = DataHelper.getYearWithOneDigit();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -179,10 +179,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var yearNumber = "00";
+        var yearNumber = DataHelper.getDateWithZero();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageWithDateOfExpiry();
     }
@@ -193,10 +193,10 @@ public class PayOnCreditTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var cardNumber = "0000 0000 0000 0000";
+        var cardNumber = DataHelper.getCardNumberWithZero();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessage();
     }
@@ -207,10 +207,10 @@ public class PayOnCreditTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var cardNumber = "4444 4444 4444 4443";
+        var cardNumber = DataHelper.getNotAlowedCardNumber();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessage();
     }
@@ -221,10 +221,10 @@ public class PayOnCreditTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var cardNumber = "4444 4444 4444 444";
+        var cardNumber = DataHelper.getSixteenDigitCardNumber();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -235,10 +235,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var monthNumber = "00";
+        var monthNumber = DataHelper.getDateWithZero();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongDateOfExpiry();
     }
@@ -249,10 +249,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var monthNumber = "2";
+        var monthNumber = DataHelper.getMonthWithOneDigit();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -263,10 +263,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var monthNumber = "13";
+        var monthNumber = DataHelper.getNotExistMonth();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongDateOfExpiry();
     }
@@ -277,10 +277,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardholder = "L";
+        var nameOfCardholder = DataHelper.getUsersNameByLength(1);
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -291,10 +291,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardholder = "IWJDNRYFBSYRHFYTVCPQZMSHRBD TGFJVNCMDKELWOQIAJZNDTMDLMREW";
+        var nameOfCardholder = DataHelper.getUsersNameByLength(60);
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -305,12 +305,12 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var nameOfCardholder = DataHelper.getFullUsersNameInLowCaseLetters();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+        buyWithCreditPage.waitSuccessMessage();
     }
 
     @Test
@@ -319,12 +319,12 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var nameOfCardholder = DataHelper.getFullUsersNameInUpperCaseAndLowCaseLetters();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+        buyWithCreditPage.waitSuccessMessage();
     }
 
     @Test
@@ -333,7 +333,7 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
         var nameOfCardholder = DataHelper.getFullUsersNameInRussian("ru");
@@ -347,10 +347,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardholder = "1234567890";
+        var nameOfCardholder = DataHelper.getFullUsersNameWithDigit();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
@@ -361,10 +361,10 @@ public class PayOnCreditTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardholder = "!@#$%^&*";
+        var nameOfCardholder = DataHelper.getFullUsersNameWithSpecCharacters();
         buyWithCreditPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }

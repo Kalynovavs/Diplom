@@ -39,7 +39,7 @@ public class PaymentCardTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
         var number = DataHelper.getApprovedCardNumber();
@@ -55,7 +55,7 @@ public class PaymentCardTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
         var number = DataHelper.getDeclinedCardNumber();
@@ -66,7 +66,7 @@ public class PaymentCardTest {
     }
 
     @Test
-    @DisplayName("sending empty sorm")
+    @DisplayName("sending empty form")
     void shouldNotSellWhenAllFieldsAreEmpty() {
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
@@ -84,13 +84,13 @@ public class PaymentCardTest {
         String nameOfCardholder = DataHelper.getFullUsersName();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
-        var cvc = "1";
+        var cvc = DataHelper.getCVCNumber(1);
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCard.waitErrorMessageAboutWrongFormat();
     }
 
     @Test
-    @DisplayName("field CVC consist one digit")
+    @DisplayName("field CVC consist two digit")
     void shouldNotSellWhenCardValidationCodeIsOneDigitShort() {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
@@ -98,7 +98,7 @@ public class PaymentCardTest {
         String nameOfCardholder = DataHelper.getFullUsersName();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
-        var cvc = "12";
+        var cvc = DataHelper.getCVCNumber(2);
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCard.waitErrorMessageAboutWrongFormat();
     }
@@ -109,12 +109,12 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
         var nameOfCardHolder = DataHelper.getOnlyUsersLastName();
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardHolder, cvc );
-        buyWithCard.waitErrorMessageAboutWrongFormat();
+        buyWithCard.waitSuccessMessage();
     }
 
     @Test
@@ -123,12 +123,12 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
         var nameOfCardHolder = DataHelper.getOnlyUsersFirstName();
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardHolder, cvc );
-        buyWithCard.waitErrorMessageAboutWrongFormat();
+        buyWithCard.waitSuccessMessage();
     }
 
     @Test
@@ -137,10 +137,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
-        var yearNumber = "20";
+        var yearNumber = DataHelper.generateDate(-20,"YY");
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCard.waitErrorMessageWithDateOfExpiry();
     }
@@ -151,10 +151,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
-        var yearNumber = "99";
+        var yearNumber = DataHelper.generateDate(20000,"YY");;
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCard.waitErrorMessageAboutWrongDateOfExpiry();
     }
@@ -165,10 +165,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCard = startingPage.buyWithCard();
-        var yearNumber = "2";
+        var yearNumber = DataHelper.getYearWithOneDigit();
         buyWithCard.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCard.waitErrorMessageAboutWrongFormat();
     }
@@ -179,10 +179,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var yearNumber = "00";
+        var yearNumber = DataHelper.getDateWithZero();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageWithDateOfExpiry();
     }
@@ -193,10 +193,10 @@ public class PaymentCardTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var cardNumber = "0000 0000 0000 0000";
+        var cardNumber = DataHelper.getCardNumberWithZero();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorCardNumberField("Неверный формат");
     }
@@ -207,10 +207,10 @@ public class PaymentCardTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var cardNumber = "4444 4444 4444 4443";
+        var cardNumber = DataHelper.getNotAlowedCardNumber();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessage();
     }
@@ -221,10 +221,10 @@ public class PaymentCardTest {
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var cardNumber = "4444 4444 4444 444";
+        var cardNumber = DataHelper.getSixteenDigitCardNumber();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorCardNumberField("Неверный формат");
     }
@@ -235,10 +235,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var monthNumber = "00";
+        var monthNumber = DataHelper.getDateWithZero();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongDateOfExpiry();
     }
@@ -249,10 +249,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var monthNumber = "2";
+        var monthNumber = DataHelper.getMonthWithOneDigit();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongFormat();
     }
@@ -263,10 +263,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String yearNumber =  DataHelper.generateDate(1,"YY");
         String nameOfCardholder = DataHelper.getFullUsersName();
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var monthNumber = "13";
+        var monthNumber = DataHelper.getNotExistMonth();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongDateOfExpiry();
     }
@@ -277,10 +277,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var nameOfCardholder = "L";
+        var nameOfCardholder = DataHelper.getUsersNameByLength(1);
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongFormat();
     }
@@ -291,10 +291,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var nameOfCardholder = "TGFJVNCMDKELWOQIAJZNDTMDLMREW IWJDNRYFBSYRHFYTVCPQZMSHRBD ";
+        var nameOfCardholder = DataHelper.getUsersNameByLength(60);
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongFormat();
     }
@@ -305,12 +305,12 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
         var nameOfCardholder = DataHelper.getFullUsersNameInLowCaseLetters();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
-        buyWithCardPage.waitErrorMessageAboutWrongFormat();
+        buyWithCardPage.waitSuccessMessage();
     }
 
     @Test
@@ -319,12 +319,13 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
         var nameOfCardholder = DataHelper.getFullUsersNameInUpperCaseAndLowCaseLetters();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongFormat();
+        buyWithCardPage.waitSuccessMessage();
     }
 
     @Test
@@ -333,7 +334,7 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
         var nameOfCardholder = DataHelper.getFullUsersNameInRussian("ru");
@@ -347,10 +348,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var nameOfCardholder = "1234567890";
+        var nameOfCardholder =DataHelper.getFullUsersNameWithDigit();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongFormat();
     }
@@ -361,10 +362,10 @@ public class PaymentCardTest {
         String cardNumber = DataHelper.getApprovedCardNumber();
         String monthNumber = DataHelper.generateDate(1,"MM");
         String yearNumber =  DataHelper.generateDate(1,"YY");
-        String cvc = String.valueOf(DataHelper.getCVCNumber());
+        String cvc =DataHelper.getCVCNumber();
         var startingPage = new StartingPage();
         var buyWithCardPage = startingPage.buyWithCard();
-        var nameOfCardholder = "!@#$%^&*";
+        var nameOfCardholder = DataHelper.getFullUsersNameWithSpecCharacters();
         buyWithCardPage.fillTheForm(cardNumber, monthNumber, yearNumber, nameOfCardholder, cvc );
         buyWithCardPage.waitErrorMessageAboutWrongFormat();
     }
