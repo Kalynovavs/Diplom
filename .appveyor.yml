@@ -21,4 +21,4 @@ install:
 
 build_script:
   - sleep 20
-  - ./gradlew test -Dselenide.headless=true -Durlbd=jdbc:mysql://localhost:3306/app --info
+  - ./gradlew test -Dselenide.headless=true -Ddatabase.url=jdbc:mysql://localhost:3306/app -Ddatabase.name=app -Ddatabase.password=pass --info
