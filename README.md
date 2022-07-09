@@ -1,5 +1,6 @@
-# DiplomaProject
+# DiplomaProject [![Build status](https://ci.appveyor.com/api/projects/status/3tkkrutt86n4rpcm?svg=true)](https://ci.appveyor.com/project/Kalynovavs/diplom)
 # Дипломный проект профессии «Тестировщик»
+
 
 Дипломный проект представляет собой автоматизацию тестирования комплексного сервиса, взаимодействующего с СУБД и API
 Банка.
